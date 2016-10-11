@@ -1,0 +1,13 @@
+.DS_Store
+build/
+
+# Android
+.idea
+.gradle
+local.properties
+*.iml
+*.iws
+*.ipr
+
+# JS
+node_modules

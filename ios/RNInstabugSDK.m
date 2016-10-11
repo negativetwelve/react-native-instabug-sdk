@@ -12,4 +12,10 @@
 
 @implementation RNInstabugSDK
 
+RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(invoke) {
+  [Instabug invoke];
+}
+
 @end

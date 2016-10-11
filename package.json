@@ -19,9 +19,6 @@
     "url": "https://github.com/negativetwelve/react-native-instabug-sdk/issues"
   },
   "homepage": "https://github.com/negativetwelve/react-native-instabug-sdk",
-  "devDependencies": {
-    "react-native": "*"
-  },
   "dependencies": {
   }
 }

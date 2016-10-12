@@ -11,8 +11,9 @@ Pod::Spec.new do |s|
   s.authors = package[:contributors].flat_map { |author| { author[:name] => author[:email] } }
   s.summary = package[:description]
   s.source = { git: package.dig(:repository, :url) }
-  s.source_files = "ios/*.{h,m}"
+  s.source_files = "ios/*"
   s.platform = :ios, "8.0"
-  s.frameworks = ["Instabug"]
-  s.dependency "Instabug", "5.3.2"
+
+  s.dependency "Instabug"
+  s.dependency "React"
 end

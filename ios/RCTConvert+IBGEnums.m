@@ -24,22 +24,20 @@ RCT_ENUM_CONVERTER(IBGInvocationEvent, (@{
 
 RCT_ENUM_CONVERTER(IBGInvocationMode, (@{
   @"invocationModeNA": @(IBGInvocationModeNA),
-  @"invocationModeNewBug": @(IBGInvocationModeNewBug),
-  @"invocationModeNewFeedbac": @(IBGInvocationModeNewFeedback),
-  @"invocationModeNewChat": @(IBGInvocationModeNewChat),
-  @"invocationModeChatsList": @(IBGInvocationModeChatsList)
+  @"invocationModeNewBug": @(IBGInvocationModeBugReporter),
+  @"invocationModeNewFeedback": @(IBGInvocationModeFeedbackSender),
 }), IBGInvocationModeNA, integerValue);
 
-RCT_ENUM_CONVERTER(IBGDismissType, (@{
-  @"dismissTypeSubmit": @(IBGDismissTypeSubmit),
-  @"dismissTypeCancel": @(IBGDismissTypeCancel),
-  @"dismissTypeAddAtttachment": @(IBGDismissTypeAddAttachment)
-}), IBGDismissTypeSubmit, integerValue)
+RCT_ENUM_CONVERTER(IBGIssueState, (@{
+  @"dismissTypeSubmit": @(IBGIssueSubmitted),
+  @"dismissTypeCancel": @(IBGIssueCancelled),
+  @"dismissTypeAddAtttachment": @(IBGIssueInProgress)
+}), IBGIssueSubmitted, integerValue)
 
-RCT_ENUM_CONVERTER(IBGReportType, (@{
-  @"reportTypeBug": @(IBGReportTypeBug),
-  @"reportTypeFeedback": @(IBGReportTypeFeedback)
-}), IBGReportTypeBug, integerValue);
+RCT_ENUM_CONVERTER(IBGFeedbackType, (@{
+  @"reportTypeBug": @(IBGFeedbackTypeBug),
+  @"reportTypeFeedback": @(IBGFeedbackTypeFeedback)
+}), IBGFeedbackTypeBug, integerValue);
 
 RCT_ENUM_CONVERTER(CGRectEdge, (@{
   @"rectMinXEdge": @(CGRectMinXEdge),
@@ -72,46 +70,5 @@ RCT_ENUM_CONVERTER(IBGColorTheme, (@{
   @"colorThemeLight": @(IBGColorThemeLight),
   @"colorThemeDark": @(IBGColorThemeDark)
 }), IBGColorThemeLight, integerValue);
-
-RCT_ENUM_CONVERTER(IBGString, (@{
-  @"shakeHint": @(IBGStringShakeHint),
-  @"swipeHint": @(IBGStringSwipeHint),
-  @"edgeSwipeStartHint": @(IBGStringEdgeSwipeStartHint),
-  @"startAlertText": @(IBGStringStartAlertText),
-  @"invalidEmailMessage": @(IBGStringInvalidEmailMessage),
-  @"invalidEmailTitle": @(IBGStringInvalidEmailTitle),
-  @"invalidCommentMessage": @(IBGStringInvalidCommentMessage),
-  @"invalidCommentTitle": @(IBGStringInvalidCommentTitle),
-  @"invocationHeader": @(IBGStringInvocationHeader),
-  @"talkToUs": @(IBGStringTalkToUs),
-  @"reportBug": @(IBGStringReportBug),
-  @"reportFeedback": @(IBGStringReportFeedback),
-  @"emailFieldHint": @(IBGStringEmailFieldHint),
-  @"commentFieldHintForBugReport": @(IBGStringCommentFieldHintForBugReport),
-  @"commentFieldHintForFeedback": @(IBGStringCommentFieldHintForFeedback),
-  @"addVideoMessage": @(IBGStringAddVideoMessage),
-  @"addVoiceMessage": @(IBGStringAddVoiceMessage),
-  @"addImageFromGallery": @(IBGStringAddImageFromGallery),
-  @"addExtraScreenshot": @(IBGStringAddExtraScreenshot),
-  @"audioRecordingPermissionDeniedTitle": @(IBGStringAudioRecordingPermissionDeniedTitle),
-  @"audioRecordingPermissionDeniedMessage": @(IBGStringAudioRecordingPermissionDeniedMessage),
-  @"microphonePermissionAlertSettingsButtonText": @(IBGStringMicrophonePermissionAlertSettingsButtonTitle),
-  @"recordingMessageToHoldText": @(IBGStringRecordingMessageToHoldText),
-  @"recordingMessageToReleaseText": @(IBGStringRecordingMessageToReleaseText),
-  @"conversationsHeaderTitle": @(IBGStringChatsNoConversationsHeadlineText),
-  @"screenshotHeaderTitle": @(IBGStringScreenshotHeaderTitle),
-  @"chatsNoConversationsHeadlineText": @(IBGStringChatsNoConversationsHeadlineText),
-  @"doneButtonText": @(IBGStringDoneButtonTitle),
-  @"okButtonText": @(IBGStringOkButtonTitle),
-  @"cancelButtonText": @(IBGStringCancelButtonTitle),
-  @"thankYouText": @(IBGStringThankYouText),
-  @"audio": @(IBGStringAudio),
-  @"video": @(IBGStringVideo),
-  @"image": @(IBGStringImage),
-  @"chatsHeaderTitle": @(IBGStringChatsHeaderTitle),
-  @"team": @(IBGStringTeam),
-  @"messageNotification": @(IBGStringMessagesNotification),
-  @"messagesNotifiactionAndOthers": @(IBGStringMessagesNotificationAndOthers)
-}), IBGStringShakeHint, integerValue);
 
 @end

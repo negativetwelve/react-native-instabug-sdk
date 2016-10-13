@@ -35,6 +35,10 @@ RCT_EXPORT_METHOD(dismiss) {
   [Instabug dismiss];
 }
 
+RCT_EXPORT_METHOD(setIntroMessageEnabled:(BOOL)isIntroMessageEnabled) {
+  [Instabug setIntroMessageEnabled:isIntroMessageEnabled];
+}
+
 RCT_EXPORT_METHOD(setUserData:(NSString *)userData) {
   [Instabug setUserData:userData];
 }

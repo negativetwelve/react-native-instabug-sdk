@@ -77,7 +77,7 @@
 			dependencies = (
 			);
 			name = RNInstabug;
-			productName = RNIntercom;
+			productName = RNInstabug;
 			productReference = 112EE36D1CC0AB8A00BF6BB8 /* libRNInstabug.a */;
 			productType = "com.apple.product-type.library.static";
 		};

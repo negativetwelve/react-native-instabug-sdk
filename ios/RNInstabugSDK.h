@@ -7,15 +7,9 @@
 //
 
 
-#if __has_include("RCTBridgeModule.h")
-  #import "RCTBridgeModule.h"
-  #import "RCTConvert.h"
-  #import "RCTUtils.h"
-#else
-  #import "React/RCTBridgeModule.h"
-  #import "React/RCTConvert.h"
-  #import "React/RCTUtils.h"
-#endif
+#import <React/RCTBridgeModule.h>
+#import <React/RCTConvert.h>
+#import <React/RCTUtils.h>
 
 
 @interface RNInstabugSDK : NSObject <RCTBridgeModule>

@@ -18,6 +18,5 @@
 #endif
 
 
-
 @interface RNInstabugSDK : NSObject <RCTBridgeModule>
 @end

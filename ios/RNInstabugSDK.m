@@ -8,7 +8,7 @@
 
 
 #import "RNInstabugSDK.h"
-#import <Instabug/Instabug.h>
+#import "Instabug.h"
 
 
 @implementation RNInstabugSDK

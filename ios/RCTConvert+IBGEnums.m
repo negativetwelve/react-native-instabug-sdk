@@ -8,7 +8,7 @@
 
 
 #import "RCTConvert+IBGEnums.h"
-#import <Instabug/IBGEnums.h>
+#import "IBGEnums.h"
 
 
 @implementation RCTConvert (IBGEnums)

@@ -7,7 +7,7 @@
 //
 
 
-#import <React/RCTConvert+IBGEnums.h>
+#import "RCTConvert+IBGEnums.h"
 #import <Instabug/IBGEnums.h>
 
 

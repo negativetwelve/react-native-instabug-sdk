@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
   s.source = { git: package[:repository][:url] }
   s.source_files = "ios/*"
   s.platform = :ios, "8.0"
+  s.frameworks = ["Instabug"]
 
   s.dependency "Instabug"
 end

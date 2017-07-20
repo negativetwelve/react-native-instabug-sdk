@@ -2,7 +2,7 @@
   "name": "react-native-instabug-sdk",
   "version": "2.0.4",
   "description": "React Native wrapper for Instabug.",
-  "main": "./src/Instabug.js",
+  "main": "./js/Instabug.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/negativetwelve/react-native-instabug-sdk.git"

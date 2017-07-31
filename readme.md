@@ -1,5 +1,10 @@
 # react-native-instabug-sdk
 
+[![npm](https://img.shields.io/npm/v/react-native-instabug-sdk.svg)](https://www.npmjs.com/package/react-native-instabug-sdk)
+[![npm](https://img.shields.io/npm/dt/react-native-instabug-sdk.svg)](https://www.npmjs.com/package/react-native-instabug-sdk)
+[![npm](https://img.shields.io/npm/l/react-native-instabug-sdk.svg)](https://github.com/negativetwelve/react-native-instabug-sdk/blob/master/LICENSE)
+[![CircleCI branch](https://img.shields.io/circleci/project/github/negativetwelve/react-native-instabug-sdk/master.svg)](https://circleci.com/gh/negativetwelve/react-native-instabug-sdk)
+
 React Native wrapper for [Instabug](https://instabug.com/).
 
 ## Setup

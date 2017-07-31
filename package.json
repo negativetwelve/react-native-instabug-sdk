@@ -2,7 +2,7 @@
   "name": "react-native-instabug-sdk",
   "version": "2.0.5",
   "description": "React Native wrapper for Instabug.",
-  "main": "./js/Instabug.js",
+  "main": "./build/Instabug.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/negativetwelve/react-native-instabug-sdk.git"
@@ -19,6 +19,26 @@
     "url": "https://github.com/negativetwelve/react-native-instabug-sdk/issues"
   },
   "homepage": "https://github.com/negativetwelve/react-native-instabug-sdk",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-jest": "^20.0.0",
+    "babel-preset-jolt": "^1.0.0",
+    "eslint-config-jolt": "^1.0.2",
+    "jest": "^20.0.0"
+  },
+  "babel": {
+    "presets": [
+      "jolt"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "jolt"
+  },
+  "scripts": {
+    "build": "babel js --out-dir build --ignore '**/*.spec.js'",
+    "lint": "eslint js",
+    "prepublishOnly": "yarn build",
+    "test": "jest"
   }
 }

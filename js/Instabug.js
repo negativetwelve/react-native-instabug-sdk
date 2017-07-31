@@ -27,7 +27,7 @@ const Instabug = {
   startWithToken: (token, event) => RNInstabugSDK.startWithToken(token, event),
   invoke: () => RNInstabugSDK.invoke(),
   invokeWithInvocationMode: (mode) => {
-    return RNInstabugSDK.invokeWithInvocationMode(model);
+    return RNInstabugSDK.invokeWithInvocationMode(mode);
   },
   dismiss: () => RNInstabugSDK.dismiss(),
   resetTags: () => RNInstabugSDK.resetTags(),

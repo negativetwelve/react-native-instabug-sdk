@@ -3,11 +3,16 @@
   "version": "2.0.5",
   "description": "React Native wrapper for Instabug.",
   "main": "./build/Instabug.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/negativetwelve/react-native-instabug-sdk.git"
-  },
-  "author": "Mark Miyashita",
+  "files": [
+    "build"
+  ],
+  "keywords": [
+    "bugs",
+    "instabug",
+    "react native",
+    "screenshots"
+  ],
+  "author": "Mark Miyashita <negativetwelve@gmail.com> (https://github.com/negativetwelve)",
   "contributors": [
     {
       "name": "Mark Miyashita",
@@ -15,10 +20,15 @@
     }
   ],
   "license": "MIT",
+  "repository": {
+    "url": "git+https://github.com/negativetwelve/react-native-instabug-sdk.git",
+    "type": "git"
+  },
   "bugs": {
     "url": "https://github.com/negativetwelve/react-native-instabug-sdk/issues"
   },
   "homepage": "https://github.com/negativetwelve/react-native-instabug-sdk",
+  "engines": {},
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.24.1",

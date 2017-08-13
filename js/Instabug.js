@@ -21,30 +21,35 @@ const guard = (object) => {
 
 const Instabug = {
   // Constants
-  ...RNInstabugSDK,
+  events: {
+    none: RNInstabugSDK.invocationEventNone,
+    shake: RNInstabugSDK.invocationEventShake,
+    screenshot: RNInstabugSDK.invocationEventScreenshot,
+    twoFingersSwipeLeft: RNInstabugSDK.invocationEventTwoFingersSwipeLeft,
+    rightEdgePan: RNInstabugSDK.invocationEventRightEdgePan,
+    floatingButton: RNInstabugSDK.invocationEventFloatingButton,
+  },
+
+  modes: {
+    NA: RNInstabugSDK.invocationModeNA,
+    newBug: RNInstabugSDK.invocationModeNewBug,
+    newFeature: RNInstabugSDK.invocationModeNewFeature,
+  },
 
   // Initialize
   startWithToken: (token, event) => RNInstabugSDK.startWithToken(token, event),
   invoke: () => RNInstabugSDK.invoke(),
-  invokeWithInvocationMode: (mode) => {
-    return RNInstabugSDK.invokeWithInvocationMode(mode);
-  },
+  invokeWithInvocationMode: (mode) => RNInstabugSDK.invokeWithInvocationMode(mode),
   dismiss: () => RNInstabugSDK.dismiss(),
   resetTags: () => RNInstabugSDK.resetTags(),
 
   // Settings
-  setIntroMessageEnabled: (isEnabled) => {
-    return RNInstabugSDK.setIntroMessageEnabled(isEnabled);
-  },
+  setIntroMessageEnabled: (isEnabled) => RNInstabugSDK.setIntroMessageEnabled(isEnabled),
   setUserData: (data) => RNInstabugSDK.setUserData(data),
   setUserEmail: (email) => RNInstabugSDK.setUserEmail(email),
   setUserName: (name) => RNInstabugSDK.setUserName(name),
-  setEmailFieldRequired: (isRequired) => {
-    return RNInstabugSDK.setEmailFieldRequired(isRequired);
-  },
-  setCommentFieldRequired: (isRequired) => {
-    return RNInstabugSDK.setCommentFieldRequired(isRequired);
-  },
+  setEmailFieldRequired: (isRequired) => RNInstabugSDK.setEmailFieldRequired(isRequired),
+  setCommentFieldRequired: (isRequired) => RNInstabugSDK.setCommentFieldRequired(isRequired),
 };
 
 

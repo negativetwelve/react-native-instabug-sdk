@@ -31,7 +31,9 @@
   },
   "homepage": "https://github.com/negativetwelve/react-native-instabug-sdk",
   "engines": {},
-  "dependencies": {},
+  "dependencies": {
+    "react-native-module-check": "^1.1.0"
+  },
   "devDependencies": {
     "eslint-config-jolt": "^1.0.2",
     "jest-preset-jolt": "^1.0.1"

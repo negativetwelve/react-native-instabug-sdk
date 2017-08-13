@@ -1,9 +1,21 @@
 // Libraries
 import {NativeModules, Platform} from 'react-native';
+import {check, defaultMessage} from 'react-native-module-check';
+import Package from '../package.json';
 
 // Native Modules
 const {RNInstabugSDK} = NativeModules;
 
+check({
+  nativeModule: RNInstabugSDK,
+  message: Platform.select({
+    default: defaultMessage({name: Package.name, repo: Package.homepage}),
+    android: (
+      `${Package.name} does not currently have an Android implementation. If ` +
+      `you would like to contribute, please submit a PR to ${Package.homepage}.`
+    ),
+  }),
+});
 
 // Wraps native functions so they are no-ops on android.
 const noop = () => {};

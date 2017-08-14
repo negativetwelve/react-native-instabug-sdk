@@ -1,73 +1,59 @@
 // Libraries
 import {NativeModules, Platform} from 'react-native';
-import {check, defaultMessage} from 'react-native-module-check';
+import {check} from 'react-native-module-check';
+import {guard} from 'react-native-module-guard';
 import Package from '../package.json';
 
+
+// Checks that the module was installed properly. More details at:
+// https://github.com/negativetwelve/react-native-module-check
 check({
+  name: Package.name,
+  repo: Package.homepage,
   nativeModule: NativeModules.RNInstabugSDK,
-  message: Platform.select({
-    default: defaultMessage({name: Package.name, repo: Package.homepage}),
-    android: (
-      `${Package.name} does not currently have an Android implementation. If ` +
-      `you would like to contribute, please submit a PR to ${Package.homepage}.`
-    ),
-  }),
 });
 
-// Protects constants.
-const Instabug = NativeModules.RNInstabugSDK || {};
 
-// Wraps native functions so they are no-ops on android.
-const noop = () => {};
-const safe = (callback) => Platform.OS === 'android' ? noop : callback;
-const guard = (object) => {
-  const safeObject = {};
-
-  // Copies all key/values and wraps each value inside a safe callback.
-  Object.keys(object).forEach(key => {
-    const value = object[key];
-
-    if (typeof value === 'object') {
-      safeObject[key] = guard(value);
-    } else {
-      safeObject[key] = safe(value);
-    }
-  });
-
-  // Returns the new cloned object.
-  return safeObject;
-};
-
-
+// Guards the module because right now it only works on iOS. When more
+// implementations are added, enabled the platforms below. More details at:
+// https://github.com/negativetwelve/react-native-module-guard
 export default guard({
-  // Constants
-  events: {
-    none: Instabug.invocationEventNone,
-    shake: Instabug.invocationEventShake,
-    screenshot: Instabug.invocationEventScreenshot,
-    twoFingersSwipeLeft: Instabug.invocationEventTwoFingersSwipeLeft,
-    rightEdgePan: Instabug.invocationEventRightEdgePan,
-    floatingButton: Instabug.invocationEventFloatingButton,
-  },
+  name: Package.name,
+  repo: Package.homepage,
+  nativeModule: NativeModules.RNInstabugSDK,
+  enabled: Platform.select({
+    ios: true,
+  }),
+  export: (Instabug) => ({
+    // Constants
+    events: {
+      none: Instabug.invocationEventNone,
+      shake: Instabug.invocationEventShake,
+      screenshot: Instabug.invocationEventScreenshot,
+      twoFingersSwipeLeft: Instabug.invocationEventTwoFingersSwipeLeft,
+      rightEdgePan: Instabug.invocationEventRightEdgePan,
+      floatingButton: Instabug.invocationEventFloatingButton,
+    },
 
-  modes: {
-    NA: Instabug.invocationModeNA,
-    newBug: Instabug.invocationModeNewBug,
-    newFeature: Instabug.invocationModeNewFeature,
-  },
+    modes: {
+      NA: Instabug.invocationModeNA,
+      newBug: Instabug.invocationModeNewBug,
+      newFeature: Instabug.invocationModeNewFeature,
+    },
 
-  // Initialize
-  startWithToken: (token, event) => Instabug.startWithToken(token, event),
-  invoke: () => Instabug.invoke(),
-  invokeWithInvocationMode: (mode) => Instabug.invokeWithInvocationMode(mode),
-  dismiss: () => Instabug.dismiss(),
-  resetTags: () => Instabug.resetTags(),
+    // Initialize
+    startWithToken: (token, event) => Instabug.startWithToken(token, event),
+    invoke: () => Instabug.invoke(),
+    invokeWithInvocationMode: (mode) => Instabug.invokeWithInvocationMode(mode),
+    dismiss: () => Instabug.dismiss(),
+    resetTags: () => Instabug.resetTags(),
 
-  // Settings
-  setIntroMessageEnabled: (isEnabled) => Instabug.setIntroMessageEnabled(isEnabled),
-  setUserData: (data) => Instabug.setUserData(data),
-  setUserEmail: (email) => Instabug.setUserEmail(email),
-  setUserName: (name) => Instabug.setUserName(name),
-  setEmailFieldRequired: (isRequired) => Instabug.setEmailFieldRequired(isRequired),
-  setCommentFieldRequired: (isRequired) => Instabug.setCommentFieldRequired(isRequired),
+    // Settings
+    setIntroMessageEnabled: (isEnabled) => Instabug.setIntroMessageEnabled(isEnabled),
+    setUserData: (data) => Instabug.setUserData(data),
+    setUserEmail: (email) => Instabug.setUserEmail(email),
+    setUserName: (name) => Instabug.setUserName(name),
+    setEmailFieldRequired: (isRequired) => Instabug.setEmailFieldRequired(isRequired),
+    setCommentFieldRequired: (isRequired) => Instabug.setCommentFieldRequired(isRequired),
+  }),
 });

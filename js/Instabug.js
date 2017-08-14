@@ -24,7 +24,15 @@ const guard = (object) => {
   const safeObject = {};
 
   // Copies all key/values and wraps each value inside a safe callback.
-  Object.keys(object).forEach(key => safeObject[key] = safe(object[key]));
+  Object.keys(object).forEach(key => {
+    const value = object[key];
+
+    if (typeof value === 'object') {
+      safeObject[key] = guard(value);
+    } else {
+      safeObject[key] = safe(value);
+    }
+  });
 
   // Returns the new cloned object.
   return safeObject;

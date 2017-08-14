@@ -1,6 +1,6 @@
 {
   "name": "react-native-instabug-sdk",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "React Native wrapper for Instabug.",
   "main": "./js/Instabug.js",
   "files": [

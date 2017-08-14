@@ -11,6 +11,9 @@ check({
   name: Package.name,
   repo: Package.homepage,
   nativeModule: NativeModules.RNInstabugSDK,
+  enabled: Platform.select({
+    ios: true,
+  }),
 });
 
 

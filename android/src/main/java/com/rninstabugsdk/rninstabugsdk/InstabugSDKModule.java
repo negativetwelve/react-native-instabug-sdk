@@ -1,6 +1,8 @@
 package com.rninstabugsdk.rninstabugsdk;
 
 import com.instabug.library.Instabug;
+import com.instabug.library.invocation.InstabugInvocationEvent;
+import com.instabug.library.invocation.InstabugInvocationMode;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -21,10 +23,12 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
   private final String INVOCATION_EVENT_FLOATING_BUTTON = "button";
 
   // Invocation Modes
-  private final String INVOCATION_MODE_NEW_BUG = "bug";
-
   // NOTE(mark): In this version of the SDK, feature -> feedback.
+  private final String INVOCATION_MODE_NEW_BUG = "bug";
   private final String INVOCATION_MODE_NEW_FEATURE = "feedback";
+
+  // Instance of the Instabug SDK object.
+  private Instabug mInstabug;
 
   public InstabugSDKModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -37,7 +41,10 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void startWithToken(String token, String invocationEvent) {
-    // TODO
+    mInstabug = new Instabug.Builder(this.androidApplication, androidToken);
+    mInstabug.setIntroMessageEnabled(false)
+    mInstabug.setInvocationEvent(getInvocationEventById(invocationEvent))
+    mInstabug.build();
   }
 
   @ReactMethod
@@ -104,6 +111,31 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
     constants.put("invocationModeNewFeature", INVOCATION_MODE_NEW_FEATURE);
 
     return constants;
+  }
+
+  // --------------------------------------------------
+  // Private
+  // --------------------------------------------------
+  private InstabugInvocationEvent getInvocationEventById(String invocationEventValue) {
+    InstabugInvocationEvent invocationEvent = InstabugInvocationEvent.SHAKE;
+    try {
+      if (invocationEventValue.equals(INVOCATION_EVENT_FLOATING_BUTTON)) {
+        invocationEvent = InstabugInvocationEvent.FLOATING_BUTTON;
+      } else if (invocationEventValue.equals(INVOCATION_EVENT_TWO_FINGERS_SWIPE)) {
+        invocationEvent = InstabugInvocationEvent.TWO_FINGER_SWIPE_LEFT;
+      } else if (invocationEventValue.equals(INVOCATION_EVENT_SHAKE)) {
+        invocationEvent = InstabugInvocationEvent.SHAKE;
+      } else if (invocationEventValue.equals(INVOCATION_EVENT_SCREENSHOT)) {
+        invocationEvent = InstabugInvocationEvent.SCREENSHOT_GESTURE;
+      } else if (invocationEventValue.equals(INVOCATION_EVENT_NONE)) {
+        invocationEvent = InstabugInvocationEvent.NONE;
+      }
+
+      return invocationEvent;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return invocationEvent;
+    }
   }
 
 }

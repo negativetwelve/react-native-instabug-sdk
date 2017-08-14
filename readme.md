@@ -10,13 +10,7 @@ React Native wrapper for [Instabug](https://instabug.com/).
 ## Setup
 
 ```
-# Yarn
 yarn add react-native-instabug-sdk
-
-OR
-
-# NPM
-npm install --save react-native-instabug-sdk
 ```
 
 ### iOS
@@ -31,13 +25,14 @@ Unfortunately, you currently need to follow the Cocoapods instructions as well. 
 
 #### Cocoapods
 
-TODO(mark): When adding `react-native-instabug-sdk` to Cocoapods and referencing `node_modules`, the package can't find the header files for Instabug itself :( If anyone knows how to fix this, I would gladly accept your PR!
-
 Add the following to your Podfile:
 
 ```
 pod "Instabug"
+pod "react-native-instabug-sdk", path: "../node_modules/react-native-instabug-sdk"
 ```
+
+Run `pod install` to update your Pods.
 
 #### Manual
 
@@ -54,12 +49,8 @@ TODO(mark): Add android support.
 import Instabug from 'react-native-instabug-sdk';
 
 // Start the reporter with your token.
-Instabug.startWithToken(
-  token,
-
-  // This means you can trigger it via taking a screenshot.
-  Instabug.invocationEventScreenshot,
-);
+// This means you can trigger it via taking a screenshot.
+Instabug.startWithToken(token, Instabug.events.screenshot);
 
 // Invoke the reporter manually.
 Instabug.invoke();

@@ -12,10 +12,16 @@ import java.util.List;
 
 public class InstabugSDKPackage implements ReactPackage {
 
+  private Application mApplication;
+
+  public InstabugSDKPackage(Application application) {
+    mApplication = application;
+  }
+
   @Override
   public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
     List<NativeModule> modules = new ArrayList<>();
-    modules.add(new com.rninstabugsdk.rninstabugsdk.InstabugSDKModule(reactContext));
+    modules.add(new com.rninstabugsdk.rninstabugsdk.InstabugSDKModule(reactContext, mApplication));
     return modules;
   }
 

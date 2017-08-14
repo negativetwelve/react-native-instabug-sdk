@@ -1,5 +1,8 @@
 package com.rninstabugsdk.rninstabugsdk;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.instabug.library.Instabug;
 import com.instabug.library.invocation.InstabugInvocationEvent;
 import com.instabug.library.invocation.InstabugInvocationMode;
@@ -12,6 +15,7 @@ import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.Promise;
 
 import java.util.HashMap;
+import java.util.Map
 
 public class InstabugSDKModule extends ReactContextBaseJavaModule {
 
@@ -26,11 +30,12 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
   private final String INVOCATION_MODE_NEW_BUG = "bug";
   private final String INVOCATION_MODE_NEW_FEATURE = "feature";
 
-  // Instance of the Instabug SDK object.
+  private Application mApplication;
   private Instabug mInstabug;
 
-  public InstabugSDKModule(ReactApplicationContext reactContext) {
+  public InstabugSDKModule(ReactApplicationContext reactContext, Application application) {
     super(reactContext);
+    mApplication = application;
   }
 
   @Override
@@ -40,10 +45,10 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void startWithToken(String token, String invocationEvent) {
-    mInstabug = new Instabug.Builder(getApplication(), token);
-    mInstabug.setIntroMessageEnabled(false);
-    mInstabug.setInvocationEvent(getInvocationEventById(invocationEvent));
-    mInstabug.build();
+    mInstabug = new Instabug.Builder(mApplication, token);
+                            .setIntroMessageEnabled(false);
+                            .setInvocationEvent(getInvocationEventById(invocationEvent));
+                            .build();
   }
 
   @ReactMethod
@@ -84,7 +89,7 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void setUserName(String userName) {
-    mInstabug.setUserName(userName);
+    mInstabug.setUsername(userName);
   }
 
   @ReactMethod
@@ -145,16 +150,16 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
   }
 
   private InstabugInvocationMode getInvocationModeById(String invocationModeValue) {
-    InstabugInvocationMode mode = InstabugInvocationMode.PROMPT_OPTION;
+    InstabugInvocationMode invocationMode = InstabugInvocationMode.PROMPT_OPTION;
 
-    if (invocationMode.equals(INVOCATION_MODE_NEW_BUG)) {
-      mode = InstabugInvocationMode.NEW_BUG;
-    } else if (invocationMode.equals(INVOCATION_MODE_NEW_FEATURE)) {
+    if (invocationModeValue.equals(INVOCATION_MODE_NEW_BUG)) {
+      invocationMode = InstabugInvocationMode.NEW_BUG;
+    } else if (invocationModeValue.equals(INVOCATION_MODE_NEW_FEATURE)) {
       // NOTE(mark): In this version of the SDK, feature -> feedback.
-      mode = InstabugInvocationMode.NEW_FEEDBACK;
+      invocationMode = InstabugInvocationMode.NEW_FEEDBACK;
     }
 
-    return mode;
+    return invocationMode;
   }
 
 }

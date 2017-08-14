@@ -32,8 +32,7 @@
   "homepage": "https://github.com/negativetwelve/react-native-instabug-sdk",
   "engines": {},
   "dependencies": {
-    "react-native-module-check": "^1.6.0",
-    "react-native-module-guard": "^1.1.0"
+    "react-native-package": "^1.0.0"
   },
   "peerDependencies": {
     "react-native": "*"

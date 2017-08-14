@@ -41,8 +41,8 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void startWithToken(String token, String invocationEvent) {
     mInstabug = new Instabug.Builder(getApplication(), token);
-    mInstabug.setIntroMessageEnabled(false)
-    mInstabug.setInvocationEvent(getInvocationEventById(invocationEvent))
+    mInstabug.setIntroMessageEnabled(false);
+    mInstabug.setInvocationEvent(getInvocationEventById(invocationEvent));
     mInstabug.build();
   }
 

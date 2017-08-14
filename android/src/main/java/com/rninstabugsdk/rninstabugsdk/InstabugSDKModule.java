@@ -23,9 +23,8 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
   private final String INVOCATION_EVENT_FLOATING_BUTTON = "button";
 
   // Invocation Modes
-  // NOTE(mark): In this version of the SDK, feature -> feedback.
   private final String INVOCATION_MODE_NEW_BUG = "bug";
-  private final String INVOCATION_MODE_NEW_FEATURE = "feedback";
+  private final String INVOCATION_MODE_NEW_FEATURE = "feature";
 
   // Instance of the Instabug SDK object.
   private Instabug mInstabug;
@@ -41,7 +40,7 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void startWithToken(String token, String invocationEvent) {
-    mInstabug = new Instabug.Builder(this.androidApplication, androidToken);
+    mInstabug = new Instabug.Builder(getApplication(), token);
     mInstabug.setIntroMessageEnabled(false)
     mInstabug.setInvocationEvent(getInvocationEventById(invocationEvent))
     mInstabug.build();
@@ -49,47 +48,58 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void invoke() {
-    // TODO
+    Handler handler = new Handler(Looper.getMainLooper());
+    handler.post(new Runnable() {
+      @Override
+      public void run() {
+        mInstabug.invoke();
+      }
+    });
   }
 
   @ReactMethod
   public void invokeWithInvocationMode(String invocationMode) {
-    // TODO
+    mInstabug.invoke(getInvocationModeById(invocationMode));
   }
 
   @ReactMethod
   public void dismiss() {
-    // TODO
+    mInstabug.dismiss();
   }
 
   @ReactMethod
   public void setIntroMessageEnabled(boolean isEnabled) {
-    // TODO
+    mInstabug.setIntroMessageEnabled(isEnabled);
   }
 
   @ReactMethod
   public void setUserData(String userData) {
-    // TODO
+    mInstabug.setUserData(userData);
   }
 
   @ReactMethod
-  public void setUserEmail(String userName) {
-    // TODO
+  public void setUserEmail(String userEmail) {
+    mInstabug.setUserEmail(userEmail);
+  }
+
+  @ReactMethod
+  public void setUserName(String userName) {
+    mInstabug.setUserName(userName);
   }
 
   @ReactMethod
   public void setEmailFieldRequired(boolean isRequired) {
-    // TODO
+    mInstabug.setEmailFieldRequired(isRequired);
   }
 
   @ReactMethod
   public void setCommentFieldRequired(boolean isRequired) {
-    // TODO
+    mInstabug.setCommentFieldRequired(isRequired);
   }
 
   @ReactMethod
   public void resetTags() {
-    // TODO
+    mInstabug.resetTags();
   }
 
   @Override
@@ -118,24 +128,33 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
   // --------------------------------------------------
   private InstabugInvocationEvent getInvocationEventById(String invocationEventValue) {
     InstabugInvocationEvent invocationEvent = InstabugInvocationEvent.SHAKE;
-    try {
-      if (invocationEventValue.equals(INVOCATION_EVENT_FLOATING_BUTTON)) {
-        invocationEvent = InstabugInvocationEvent.FLOATING_BUTTON;
-      } else if (invocationEventValue.equals(INVOCATION_EVENT_TWO_FINGERS_SWIPE)) {
-        invocationEvent = InstabugInvocationEvent.TWO_FINGER_SWIPE_LEFT;
-      } else if (invocationEventValue.equals(INVOCATION_EVENT_SHAKE)) {
-        invocationEvent = InstabugInvocationEvent.SHAKE;
-      } else if (invocationEventValue.equals(INVOCATION_EVENT_SCREENSHOT)) {
-        invocationEvent = InstabugInvocationEvent.SCREENSHOT_GESTURE;
-      } else if (invocationEventValue.equals(INVOCATION_EVENT_NONE)) {
-        invocationEvent = InstabugInvocationEvent.NONE;
-      }
 
-      return invocationEvent;
-    } catch (Exception e) {
-      e.printStackTrace();
-      return invocationEvent;
+    if (invocationEventValue.equals(INVOCATION_EVENT_FLOATING_BUTTON)) {
+      invocationEvent = InstabugInvocationEvent.FLOATING_BUTTON;
+    } else if (invocationEventValue.equals(INVOCATION_EVENT_TWO_FINGERS_SWIPE)) {
+      invocationEvent = InstabugInvocationEvent.TWO_FINGER_SWIPE_LEFT;
+    } else if (invocationEventValue.equals(INVOCATION_EVENT_SHAKE)) {
+      invocationEvent = InstabugInvocationEvent.SHAKE;
+    } else if (invocationEventValue.equals(INVOCATION_EVENT_SCREENSHOT)) {
+      invocationEvent = InstabugInvocationEvent.SCREENSHOT_GESTURE;
+    } else if (invocationEventValue.equals(INVOCATION_EVENT_NONE)) {
+      invocationEvent = InstabugInvocationEvent.NONE;
     }
+
+    return invocationEvent;
+  }
+
+  private InstabugInvocationMode getInvocationModeById(String invocationModeValue) {
+    InstabugInvocationMode mode = InstabugInvocationMode.PROMPT_OPTION;
+
+    if (invocationMode.equals(INVOCATION_MODE_NEW_BUG)) {
+      mode = InstabugInvocationMode.NEW_BUG;
+    } else if (invocationMode.equals(INVOCATION_MODE_NEW_FEATURE)) {
+      // NOTE(mark): In this version of the SDK, feature -> feedback.
+      mode = InstabugInvocationMode.NEW_FEEDBACK;
+    }
+
+    return mode;
   }
 
 }

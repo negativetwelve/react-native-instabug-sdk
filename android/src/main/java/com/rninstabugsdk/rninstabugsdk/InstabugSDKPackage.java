@@ -1,5 +1,7 @@
 package com.rninstabugsdk.rninstabugsdk;
 
+import android.content.Context;
+
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
@@ -12,16 +14,16 @@ import java.util.List;
 
 public class InstabugSDKPackage implements ReactPackage {
 
-  private Application mApplication;
+  private Context mContext;
 
-  public InstabugSDKPackage(Application application) {
-    mApplication = application;
+  public InstabugSDKPackage(Context context) {
+    mContext = context;
   }
 
   @Override
   public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
     List<NativeModule> modules = new ArrayList<>();
-    modules.add(new com.rninstabugsdk.rninstabugsdk.InstabugSDKModule(reactContext, mApplication));
+    modules.add(new com.rninstabugsdk.rninstabugsdk.InstabugSDKModule(reactContext, mContext));
     return modules;
   }
 

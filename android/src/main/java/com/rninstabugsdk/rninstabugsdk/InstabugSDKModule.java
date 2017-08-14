@@ -1,5 +1,7 @@
 package com.rninstabugsdk.rninstabugsdk;
 
+import android.app.Application;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -15,7 +17,7 @@ import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.Promise;
 
 import java.util.HashMap;
-import java.util.Map
+import java.util.Map;
 
 public class InstabugSDKModule extends ReactContextBaseJavaModule {
 
@@ -30,12 +32,12 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
   private final String INVOCATION_MODE_NEW_BUG = "bug";
   private final String INVOCATION_MODE_NEW_FEATURE = "feature";
 
-  private Application mApplication;
+  private Context mContext;
   private Instabug mInstabug;
 
-  public InstabugSDKModule(ReactApplicationContext reactContext, Application application) {
+  public InstabugSDKModule(ReactApplicationContext reactContext, Context context) {
     super(reactContext);
-    mApplication = application;
+    mContext = context;
   }
 
   @Override
@@ -45,10 +47,10 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void startWithToken(String token, String invocationEvent) {
-    mInstabug = new Instabug.Builder(mApplication, token);
-                            .setIntroMessageEnabled(false);
-                            .setInvocationEvent(getInvocationEventById(invocationEvent));
-                            .build();
+    mInstabug = new Instabug.Builder((Application) mContext.getApplicationContext(), token)
+      .setIntroMessageEnabled(false)
+      .setInvocationEvent(getInvocationEventById(invocationEvent))
+      .build();
   }
 
   @ReactMethod

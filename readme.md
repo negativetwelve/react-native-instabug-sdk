@@ -40,7 +40,11 @@ Inside your xcode project file, right click on your "Libraries" folder and selec
 
 ### Android
 
-TODO(mark): Add android support.
+Run the following:
+
+```shell
+react-native link react-native-ux-cam
+```
 
 ## Usage
 

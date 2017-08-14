@@ -49,6 +49,11 @@
   "jest": {
     "preset": "jest-preset-jolt"
   },
+  "rnpm": {
+    "android": {
+      "packageInstance": "new InstabugSDKPackage(getApplicationContext())"
+    },
+  },
   "scripts": {
     "lint": "eslint js",
     "test": "jest"

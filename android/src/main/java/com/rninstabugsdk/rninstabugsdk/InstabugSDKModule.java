@@ -13,6 +13,19 @@ import java.util.HashMap;
 
 public class InstabugSDKModule extends ReactContextBaseJavaModule {
 
+  // Invocation Events
+  private final String INVOCATION_EVENT_NONE = "none";
+  private final String INVOCATION_EVENT_SHAKE = "shake";
+  private final String INVOCATION_EVENT_SCREENSHOT = "screenshot";
+  private final String INVOCATION_EVENT_TWO_FINGERS_SWIPE = "swipe";
+  private final String INVOCATION_EVENT_FLOATING_BUTTON = "button";
+
+  // Invocation Modes
+  private final String INVOCATION_MODE_NEW_BUG = "bug";
+
+  // NOTE(mark): In this version of the SDK, feature -> feedback.
+  private final String INVOCATION_MODE_NEW_FEATURE = "feedback";
+
   public InstabugSDKModule(ReactApplicationContext reactContext) {
     super(reactContext);
   }
@@ -76,7 +89,20 @@ public class InstabugSDKModule extends ReactContextBaseJavaModule {
   public Map<String, Object> getConstants() {
     final Map<String, Object> constants = new HashMap<>();
 
-    // TODO(marK): Implement.
+    // Invocation Events
+    // TODO(mark): iOS has invocationEventRightEdgePan which Android doesn't
+    // have.
+    constants.put("invocationEventNone", INVOCATION_EVENT_NONE);
+    constants.put("invocationEventShake", INVOCATION_EVENT_SHAKE);
+    constants.put("invocationEventScreenshot", INVOCATION_EVENT_SCREENSHOT);
+    constants.put("invocationEventTwoFingersSwipe", INVOCATION_EVENT_TWO_FINGERS_SWIPE);
+    constants.put("invocationEventFloatingButton", INVOCATION_EVENT_FLOATING_BUTTON);
+
+    // Invocation Modes
+    // TODO(mark): iOS has invocationModeNA which Android doesn't have.
+    constants.put("invocationModeNewBug", INVOCATION_MODE_NEW_BUG);
+    constants.put("invocationModeNewFeature", INVOCATION_MODE_NEW_FEATURE);
+
     return constants;
   }
 

@@ -1977,9 +1977,9 @@ randomatic@^1.1.3:
     is-number "^3.0.0"
     kind-of "^4.0.0"
 
-react-native-module-check@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/react-native-module-check/-/react-native-module-check-1.2.3.tgz#5b9e767adaa3a8dbd872c2d627e3aa5893bbf437"
+react-native-module-check@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-module-check/-/react-native-module-check-1.3.0.tgz#4a843cb3feb6cb2f3c817fa396a6eab5e794433b"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"

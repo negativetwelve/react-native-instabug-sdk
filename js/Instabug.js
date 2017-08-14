@@ -3,11 +3,8 @@ import {NativeModules, Platform} from 'react-native';
 import {check, defaultMessage} from 'react-native-module-check';
 import Package from '../package.json';
 
-// Native Modules
-const {RNInstabugSDK} = NativeModules;
-
 check({
-  nativeModule: RNInstabugSDK,
+  nativeModule: NativeModules.RNInstabugSDK,
   message: Platform.select({
     default: defaultMessage({name: Package.name, repo: Package.homepage}),
     android: (
@@ -16,6 +13,9 @@ check({
     ),
   }),
 });
+
+// Protects constants.
+const Instabug = NativeModules.RNInstabugSDK || {};
 
 // Wraps native functions so they are no-ops on android.
 const noop = () => {};
@@ -39,38 +39,35 @@ const guard = (object) => {
 };
 
 
-const Instabug = {
+export default guard({
   // Constants
   events: {
-    none: RNInstabugSDK.invocationEventNone,
-    shake: RNInstabugSDK.invocationEventShake,
-    screenshot: RNInstabugSDK.invocationEventScreenshot,
-    twoFingersSwipeLeft: RNInstabugSDK.invocationEventTwoFingersSwipeLeft,
-    rightEdgePan: RNInstabugSDK.invocationEventRightEdgePan,
-    floatingButton: RNInstabugSDK.invocationEventFloatingButton,
+    none: Instabug.invocationEventNone,
+    shake: Instabug.invocationEventShake,
+    screenshot: Instabug.invocationEventScreenshot,
+    twoFingersSwipeLeft: Instabug.invocationEventTwoFingersSwipeLeft,
+    rightEdgePan: Instabug.invocationEventRightEdgePan,
+    floatingButton: Instabug.invocationEventFloatingButton,
   },
 
   modes: {
-    NA: RNInstabugSDK.invocationModeNA,
-    newBug: RNInstabugSDK.invocationModeNewBug,
-    newFeature: RNInstabugSDK.invocationModeNewFeature,
+    NA: Instabug.invocationModeNA,
+    newBug: Instabug.invocationModeNewBug,
+    newFeature: Instabug.invocationModeNewFeature,
   },
 
   // Initialize
-  startWithToken: (token, event) => RNInstabugSDK.startWithToken(token, event),
-  invoke: () => RNInstabugSDK.invoke(),
-  invokeWithInvocationMode: (mode) => RNInstabugSDK.invokeWithInvocationMode(mode),
-  dismiss: () => RNInstabugSDK.dismiss(),
-  resetTags: () => RNInstabugSDK.resetTags(),
+  startWithToken: (token, event) => Instabug.startWithToken(token, event),
+  invoke: () => Instabug.invoke(),
+  invokeWithInvocationMode: (mode) => Instabug.invokeWithInvocationMode(mode),
+  dismiss: () => Instabug.dismiss(),
+  resetTags: () => Instabug.resetTags(),
 
   // Settings
-  setIntroMessageEnabled: (isEnabled) => RNInstabugSDK.setIntroMessageEnabled(isEnabled),
-  setUserData: (data) => RNInstabugSDK.setUserData(data),
-  setUserEmail: (email) => RNInstabugSDK.setUserEmail(email),
-  setUserName: (name) => RNInstabugSDK.setUserName(name),
-  setEmailFieldRequired: (isRequired) => RNInstabugSDK.setEmailFieldRequired(isRequired),
-  setCommentFieldRequired: (isRequired) => RNInstabugSDK.setCommentFieldRequired(isRequired),
-};
-
-
-export default guard(Instabug);
+  setIntroMessageEnabled: (isEnabled) => Instabug.setIntroMessageEnabled(isEnabled),
+  setUserData: (data) => Instabug.setUserData(data),
+  setUserEmail: (email) => Instabug.setUserEmail(email),
+  setUserName: (name) => Instabug.setUserName(name),
+  setEmailFieldRequired: (isRequired) => Instabug.setEmailFieldRequired(isRequired),
+  setCommentFieldRequired: (isRequired) => Instabug.setCommentFieldRequired(isRequired),
+});

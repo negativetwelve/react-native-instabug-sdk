@@ -64,8 +64,9 @@ RCT_EXPORT_METHOD(resetTags) {
 }
 
 /**
- * Seems like the new Instabug SDK that's about to come out has more enums. This adds the minimum amount
- * to get our app working right now. I plan to add the rest of the enums once the new version is released.
+ * Seems like the new Instabug SDK that's about to come out has more enums.
+ * This adds the minimum amount to get our app working right now. I plan to add
+ * the rest of the enums once the new version is released.
  */
 - (NSDictionary *)constantsToExport {
   return @{

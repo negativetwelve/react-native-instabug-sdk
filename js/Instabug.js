@@ -18,6 +18,7 @@ export default Package.create({
   json: require('../package.json'),
   nativeModule: NativeModules.RNInstabugSDK,
   enabled: Platform.select({
+    android: true,
     ios: true,
   }),
   export: (Instabug) => ({

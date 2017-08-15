@@ -43,7 +43,7 @@ Inside your xcode project file, right click on your "Libraries" folder and selec
 Run the following:
 
 ```shell
-react-native link react-native-ux-cam
+react-native link react-native-instabug-sdk
 ```
 
 If you receive an error with RxJava similar to:

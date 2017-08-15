@@ -52,7 +52,7 @@ If you receive an error with RxJava similar to:
 >   File1: /home/adi/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.8/f9dbae366a6a3d6b5041c5e8db0dcdfdc35c27b5/rxjava-1.1.8.jar
 >   File2: /home/adi/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.0.0-RC1/3ee37bb825446a3bafac68a46f2397a8affd9b68/rxjava-2.0.0-RC1.jar
 
-then update your `app/build.gradle` file to include:
+Then update your `app/build.gradle` file to include:
 
 ```gradle
 android {

@@ -52,7 +52,7 @@
   "rnpm": {
     "android": {
       "packageInstance": "new InstabugSDKPackage(getApplicationContext())"
-    },
+    }
   },
   "scripts": {
     "lint": "eslint js",

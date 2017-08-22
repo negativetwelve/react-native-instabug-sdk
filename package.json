@@ -1,6 +1,6 @@
 {
   "name": "react-native-instabug-sdk",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "React Native wrapper for Instabug.",
   "license": "MIT",
   "author": "Mark Miyashita <negativetwelve@gmail.com>",

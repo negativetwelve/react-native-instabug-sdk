@@ -20,7 +20,7 @@
     "react-native-instabug-sdk.podspec"
   ],
   "dependencies": {
-    "react-native-package": "^2.3.0"
+    "react-native-package": "^2.4.1"
   },
   "peerDependencies": {
     "react-native": "*"
